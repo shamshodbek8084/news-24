@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import User
+from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 class BaseModel(models.Model):
@@ -28,10 +29,21 @@ class Article(BaseModel):
     title = models.CharField(max_length=255, unique=True)
     subtitle = models.CharField(max_length=255)
     image = models.ImageField(upload_to='articles')
-    description = models.TextField()
+    description = RichTextUploadingField()
     views = models.PositiveIntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='articles')
     tags = models.ManyToManyField(Tag, related_name='articles', blank=True)
 
+
     def __str__(self) :
         return f"{self.id} {self.title}"
+    
+
+class Contact(BaseModel):
+    name = models.CharField(max_length=150)
+    email = models.EmailField()
+    message = models.TextField()
+
+
+    def __str__(self) -> str:
+        return self.name

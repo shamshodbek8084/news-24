@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Main Page
+{% endblock title %}
+
+
+
+{% block content %}
+
+<div>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'accounts:logout' %}"> Chiqish </a>
+    <a href="{% url 'accounts:userupdate' %}"> Ma'lumotlarni yangilash </a>
+    {% else %}
+    <a href="{% url 'accounts:signup' %}"> Ro'yxatdan o'tish </a>
+    <a href="{% url 'accounts:login' %}"> Tizimga kirish </a>
+    {% endif %}
+</div>
+
+
+<h2>Categories</h2>
+    
+{% for ctg in categories %}
+{{ ctg.name }}<br>
+{% endfor %}
+<hr>
+
+
+<h2>main_news</h2>
+
+{% for article in main_news %}
+{{ article.title }} | {{ article.category }} | {{ article.created_at }}<br>
+{% endfor %}
+<hr>
+{% endblock content %}
