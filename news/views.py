@@ -24,12 +24,12 @@ class HomeView(View):
     
 
 class ArticleDetailView(View):
-    def get(self, request, id):
-        article = get_object_or_404(Article, id=id)
+    def get(self, request, slug):
+        article = get_object_or_404(Article, slug=slug)
         article.views+=1
         article.save()
 
-        similiar_news = Article.objects.filter(category=article.category).exclude(id=id).order_by("?")[:4]
+        similiar_news = Article.objects.filter(category=article.category).exclude(slug=slug).order_by("?")[:4]
 
         context = {
             "article":article,

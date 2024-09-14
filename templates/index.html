@@ -19,28 +19,18 @@
                                         href="">{{ new.category.name }}</a>
                                     <a class="text-white" href="">{{ new.created_at }}</a>
                                 </div>
-                                <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="{% url 'detail' new.id%}">{{ new.subtitle }}</a>
+                                <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="{% url 'detail' new.slug%}">{{ new.subtitle }}</a>
                             </div>
                         </div>
                     {% endif %}
                     {% endfor %}
-
-                        <img class="img-fluid h-100" src="{% static 'img/news-800x500-3.jpg' %}" style="object-fit: cover;">
-                        <div class="overlay">
-                            <div class="mb-2">
-                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                    href="">Business3</a>
-                                <a class="text-white" href="">Jan 01, 2045</a>
-                            </div>
-                            <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit amet elit. Proin vitae porta diam...</a>
-                        </div>
-                    </div>
+  
                 </div>
             </div>
             <div class="col-lg-5 px-0">
                 <div class="row mx-0">
                     {% for new in main_news %}
-                    {% if forloop.counter > 2 %}
+                    {% if forloop.counter > 3 %}
                         <div class="col-md-6 px-0">
                             <div class="position-relative overflow-hidden" style="height: 250px;">
                                 <img class="img-fluid w-100 h-100" src="{{ new.image.url }}" style="object-fit: cover;">
@@ -50,24 +40,13 @@
                                             href="">{{ new.category.name }}</a>
                                         <a class="text-white" href=""><small>{{ new.created_at }}</small></a>
                                     </div>
-                                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{% url 'detail' new.id%}"> {{ new.subtitle }} </a>
+                                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{% url 'detail' new.slug%}"> {{ new.subtitle }} </a>
                                 </div>
                             </div>
                         </div>
                         {% endif %}
                         {% endfor %}
          
-                        <div class="position-relative overflow-hidden" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="{% static 'img/news-700x435-4.jpg' %}" style="object-fit: cover;">
-                            <div class="overlay">
-                                <div class="mb-2">
-                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                        href="">Business</a>
-                                    <a class="text-white" href=""><small>Jan 01, 2045</small></a>
-                                </div>
-                                <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">Lorem ipsum dolor sit amet elit...</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -85,8 +64,15 @@
                         <div class="bg-primary text-dark text-center font-weight-medium py-2" style="width: 170px;">Breaking News</div>
                         <div class="owl-carousel tranding-carousel position-relative d-inline-flex align-items-center ml-3"
                             style="width: calc(100% - 170px); padding-right: 90px;">
-                            <div class="text-truncate"><a class="text-white text-uppercase font-weight-semi-bold" href="">Lorem ipsum dolor sit amet elit. Proin interdum lacus eget ante tincidunt, sed faucibus nisl sodales</a></div>
-                            <div class="text-truncate"><a class="text-white text-uppercase font-weight-semi-bold" href="">Lorem ipsum dolor sit amet elit. Proin interdum lacus eget ante tincidunt, sed faucibus nisl sodales</a></div>
+
+                        {% for new in main_news %}
+                        {% if forloop.counter < 4 %}
+
+
+                            <div class="text-truncate"><a class="text-white text-uppercase font-weight-semi-bold" href="">{{ new.subtitle }}</a></div>
+                            {% endif %}
+                            {% endfor %}
+
                         </div>
                     </div>
                 </div>
@@ -114,7 +100,7 @@
                                 href="">{{new.category.name}}</a>
                             <a class="text-white" href=""><small>{{ new.created_at}}</small></a>
                         </div>
-                        <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{% url 'detail' new.id%}">{{ new.title}}</a>
+                        <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{% url 'detail' new.slug%}">{{ new.title}}</a>
                     </div>
                 </div>
                 {% endfor %}
@@ -152,7 +138,7 @@
                                             href="">Business1</a>
                                         <a class="text-body" href=""><small>Jan 01, 2045</small></a>
                                     </div>
-                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{% url 'detail' new.id%}">Lorem ipsum dolor sit amet elit...</a>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{% url 'detail' new.slug%}">Lorem ipsum dolor sit amet elit...</a>
                                     <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
                                         rebum clita rebum dolor stet amet justo</p>
                                 </div>
@@ -180,7 +166,7 @@
                                 <img class="img-fluid" width="100" height="50" src="{{ new.image.url }}" alt="">
                                 <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                     <div class="mb-2">
-                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="{% url 'detail' new.id%}">{{new.category.name}}</a>
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="{% url 'detail' new.slug%}">{{new.category.name}}</a>
                                         <a class="text-body" href=""><small>{{ new.created_at }}</small></a>
                                     </div>
                                     <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">{{ new.title }}</a>
@@ -194,7 +180,7 @@
                                         <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
                                         <a class="text-body" href=""><small>Jan 01, 2045</small></a>
                                     </div>
-                                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{% url 'detail' new.id%}">Lorem ipsum dolor sit amet elit...</a>
+                                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{% url 'detail' new.slug%}">Lorem ipsum dolor sit amet elit...</a>
                                 </div>
                             </div>
                         {% endif %}
@@ -265,8 +251,8 @@
                                 <img class="img-fluid" width="100" height="50" src="{{ new.image.url }}" alt="">
                                 <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                     <div class="mb-2">
-                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                                        <a class="text-body" href=""><small>Jan 01, 2045</small></a>
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">{{new.category.name}}</a>
+                                        <a class="text-body" href=""><small>{{new.created_at}}</small></a>
                                     </div>
                                     <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">{{ new.subtitle }}</a>
                                 </div>
